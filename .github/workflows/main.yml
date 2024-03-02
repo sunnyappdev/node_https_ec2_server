@@ -38,11 +38,9 @@ jobs:
           echo "PORT=${PORT}" >> .env
 
       - name: Run Node.js application with PM2
-        run: npm install -g pm2
-        # navigate to node project root directory
-        run: pm2 start index.js --name=my_node_app
-        # save process so works on next boot
-        run: pm2 save
-        # have pm2 start on next system boot
-        run: pm2 startup
-        run: pm2 restart my_node_app
+        run: |
+          npm install -g pm2
+          pm2 start index.js --name=my_node_app
+          pm2 save
+          pm2 startup
+          pm2 restart my_node_app
