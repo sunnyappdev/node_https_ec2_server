@@ -37,10 +37,6 @@ jobs:
           echo "KEY_3=${KEY_3}" >> .env
           echo "PORT=${PORT}" >> .env
 
-      - name: Run Node.js application with PM2
-        run: |
-          npm install -g pm2
-          pm2 start index.js --name=my_node_app
-          pm2 save
-          pm2 startup
-          pm2 restart my_node_app
+      # Add after install pm2 on EC2 instance
+      - name: Restart Node.js application with PM2
+        run: pm2 restart my_node_app
