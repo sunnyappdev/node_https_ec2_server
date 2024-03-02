@@ -36,3 +36,7 @@ jobs:
           echo "KEY_2=${KEY_2}" >> .env
           echo "KEY_3=${KEY_3}" >> .env
           echo "PORT=${PORT}" >> .env
+
+      # Add after install pm2 on EC2 instance
+      - name: Restart Node.js application with PM2
+        run: pm2 restart my_node_app
