@@ -87,6 +87,6 @@ app.use(function (req, res) {
 app.listen(port);
 console.log("App is listening on port " + port);
 
-console.log("Environment variables");
+console.log("Environment variables!");
 console.log("port: ", port);
 console.log("apiKeys: ", apiKeys);
