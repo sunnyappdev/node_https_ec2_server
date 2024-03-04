@@ -1,0 +1,38 @@
+# Reference article: https://blog.devgenius.io/auto-deploy-nodejs-apis-to-aws-ec2-using-githubactions-8884c31a820
+name: Deploy on Push
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: self-hosted
+
+    strategy:
+      matrix:
+        node-version: [20.11.0]
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Set up environment variables
+        env:
+          KEY_1: ${{ secrets.KEY_1 }}
+          KEY_2: ${{ secrets.KEY_2 }}
+          KEY_3: ${{ secrets.KEY_3 }}
+          PORT: ${{ secrets.PORT }}
+        run: |
+          echo "KEY_1=${KEY_1}" >> .env
+          echo "KEY_2=${KEY_2}" >> .env
+          echo "KEY_3=${KEY_3}" >> .env
+          echo "PORT=${PORT}" >> .env
