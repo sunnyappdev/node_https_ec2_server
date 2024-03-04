@@ -86,10 +86,3 @@ app.use(function (req, res) {
 
 app.listen(port);
 console.log("App is listening on port " + port);
-
-console.log("Environment variables");
-console.log("port: ", port);
-console.log("apiKeys: ", apiKeys);
-
-// http://52.20.175.67:8080/api/user/tobi/repos/?api-key=abc123
-// http://52.20.175.67:8080/api/users?api-key=def456
